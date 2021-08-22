@@ -15,7 +15,7 @@
 
 ### Association
 has_many :items
-has_one :buy
+has_many :buys
 
 
 ## items テーブル
@@ -35,7 +35,6 @@ has_one :buy
 
 ### Association
 belongs_to :user
-has_one :redidence
 has_one :buy
 
 extend ActiveHash::Associations::ActuveRecordExtensions
@@ -44,6 +43,21 @@ belongs_to :item_status
 belongs_to :delivery_fee
 belongs_to :prefecture
 belongs_to :read_time
+
+
+
+## buys テーブル
+
+| Column              | Type        | Options                        |
+| ------------------- | ----------- | ------------------------------ |
+| user                | references  | null: false, foreign_key: true |
+| item                | references  | null: false, foreign_key: true |
+
+
+### Association
+belongs_to :user
+belongs_to :item
+has_one :residence
 
 
 ## residences テーブル
@@ -55,22 +69,8 @@ belongs_to :read_time
 | address             | string      | null: false                    |
 | build_name          | string      |                                |
 | phone_number        | string      | null: false                    |
-| item                | references  | null: false, foreign_key: true |
+| buy                 | references  | null: false, foreign_key: true |
+
 
 ### Association
-belongs_to :item
-has_one :buy
-
-
-## buys テーブル
-
-| Column              | Type        | Options                        |
-| ------------------- | ----------- | ------------------------------ |
-| user                | references  | null: false, foreign_key: true |
-| item                | references  | null: false, foreign_key: true |
-| residence           | references  | null: false, foreign_key: true |
-
-### Association
-belongs_to :user
-belongs_to :item
-belongs_to :residence
+belongs_to :buy
