@@ -2,38 +2,63 @@
 
 ## users テーブル
 
-| Column              | Type      | Options       |
-| ------------------- | --------- | ------------- |
-| nickname            | string    | null: false   |
-| email               | string    | null: false   |
-| encrypted_password  | string    | null: false   |
-| lastname            | string    | null: false   |
-| firstname           | string    | null: false   |
-| lastname_japanese   | string    | null: false   |
-| firstname_japanese  | string    | null: false   |
-| birthday            | string    | null: false   |
+| Column              | Type      | Options                    |
+| ------------------- | --------- | -------------------------- |
+| nickname            | string    | null: false                |
+| email               | string    | null: false, unique: true  |
+| encrypted_password  | string    | null: false                |
+| lastname            | string    | null: false                |
+| firstname           | string    | null: false                |
+| lastname_japanese   | string    | null: false                |
+| firstname_japanese  | string    | null: false                |
+| birthday            | date      | null: false                |
 
 ### Association
 has_many :items
+has_one :buy
 
 
 ## items テーブル
 
 | Column              | Type        | Options                        |
 | ------------------- | ----------- | ------------------------------ |
-| image               | string      | null: false                    |
 | name                | string      | null: false                    |
 | info                | text        | null: false                    |
-| item_status         | string      | null: false                    |
-| delivery_fee        | string      | null: false                    |
-| precture            | string      | null: false                    |
-| read_time           | string      | null: false                    |
+| category_id         | integer     | null: false                    |
+| item_status_id      | integer     | null: false                    |
+| delivery_fee_id     | integer     | null: false                    |
+| prefecture_id       | integer     | null: false                    |
+| read_time_id        | integer     | null: false                    |
 | price               | integer     | null: false                    |
 | user                | references  | null: false, foreign_key: true |
 
 
 ### Association
 belongs_to :user
+has_one :redidence
+has_one :buy
+
+extend ActiveHash::Associations::ActuveRecordExtensions
+belongs_to :category
+belongs_to :item_status
+belongs_to :delivery_fee
+belongs_to :prefecture
+belongs_to :read_time
+
+
+## residences テーブル
+
+| Column              | Type        | Options                        |
+| ------------------- | ----------- | ------------------------------ |
+| postal_code         | string      | null: false                    |
+| city                | string      | null: false                    |
+| address             | string      | null: false                    |
+| build_name          | string      |                                |
+| phone_number        | string      | null: false                    |
+| item                | references  | null: false, foreign_key: true |
+
+### Association
+belongs_to :item
 has_one :buy
 
 
@@ -41,15 +66,11 @@ has_one :buy
 
 | Column              | Type        | Options                        |
 | ------------------- | ----------- | ------------------------------ |
-| credit_card_number  | integer     | null: false                    |
-| dead_line           | integer     | null: false                    |
-| security_code       | integer     | null: false                    |
-| postal_code         | string      | null: false                    |
-| city                | string      | null: false                    |
-| address             | string      | null: false                    |
-| build_name          | string      | null: false                    |
-| phone_number        | integer     | null: false                    |
+| user                | references  | null: false, foreign_key: true |
 | item                | references  | null: false, foreign_key: true |
+| residence           | references  | null: false, foreign_key: true |
 
 ### Association
+belongs_to :user
 belongs_to :item
+belongs_to :residence
