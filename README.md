@@ -65,6 +65,7 @@ has_one :residence
 | Column              | Type        | Options                        |
 | ------------------- | ----------- | ------------------------------ |
 | postal_code         | string      | null: false                    |
+| prefecture_id       | integer     | null: false                    |
 | city                | string      | null: false                    |
 | address             | string      | null: false                    |
 | build_name          | string      |                                |
@@ -74,3 +75,4 @@ has_one :residence
 
 ### Association
 belongs_to :buy
+belongs_to :prefecture
