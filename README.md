@@ -23,12 +23,12 @@ has_many :items
 | ------------------- | ----------- | ------------------------------ |
 | image               | string      | null: false                    |
 | name                | string      | null: false                    |
-| info                | string      | null: false                    |
+| info                | text        | null: false                    |
 | item_status         | string      | null: false                    |
 | delivery_fee        | string      | null: false                    |
 | precture            | string      | null: false                    |
 | read_time           | string      | null: false                    |
-| price               | string      | null: false                    |
+| price               | integer     | null: false                    |
 | user                | references  | null: false, foreign_key: true |
 
 
@@ -41,14 +41,14 @@ has_one :buy
 
 | Column              | Type        | Options                        |
 | ------------------- | ----------- | ------------------------------ |
-| credit_card_number  | string      | null: false                    |
-| dead_line           | string      | null: false                    |
-| security_code       | string      | null: false                    |
+| credit_card_number  | integer     | null: false                    |
+| dead_line           | integer     | null: false                    |
+| security_code       | integer     | null: false                    |
 | postal_code         | string      | null: false                    |
 | city                | string      | null: false                    |
 | address             | string      | null: false                    |
 | build_name          | string      | null: false                    |
-| phone_number        | string      | null: false                    |
+| phone_number        | integer     | null: false                    |
 | item                | references  | null: false, foreign_key: true |
 
 ### Association
