@@ -75,4 +75,6 @@ has_one :residence
 
 ### Association
 belongs_to :buy
+
+extend ActiveHash::Associations::ActuveRecordExtensions
 belongs_to :prefecture
