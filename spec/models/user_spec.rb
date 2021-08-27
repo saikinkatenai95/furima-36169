@@ -22,33 +22,37 @@ RSpec.describe User, type: :model do
           @user.password = ""
           @user.valid?
           expect(@user.errors.full_messages).to include("Password can't be blank")
-        
         end
 
         
         it "lastnameが空では登録できない" do
-          
-          
+          @user.lastname = ""
+          @user.valid?
+          expect(@user.errors.full_messages).to include("Lastname can't be blank")
         end
         
         it "firstnameが空では登録できない" do
-          
-          
+          @user.firstname = ""
+          @user.valid?
+          expect(@user.errors.full_messages).to include("Firstname can't be blank")
         end
         
         it "lastname_japanaseが空では登録できない" do
-          
-          
+          @user.lastname_japanese = ""
+          @user.valid?
+          expect(@user.errors.full_messages).to include("Lastname japanese can't be blank")
         end
         
         it "firstname_japanaseが空では登録できない" do
-          
-          
+          @user.firstname_japanese = ""
+          @user.valid?
+          expect(@user.errors.full_messages).to include("Firstname japanese can't be blank")
         end
         
-        it "dateが空では登録できない" do
-          
-          
+        it "birthdayが空では登録できない" do
+          @user.birthday = ""
+          @user.valid?
+          expect(@user.errors.full_messages).to include("Birthday can't be blank")
         end
         
         it "lastnameが漢字以外では登録できない" do
