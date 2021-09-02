@@ -4,10 +4,10 @@ class CreateItems < ActiveRecord::Migration[6.0]
       t.string :name,                 null: false
       t.text :info,                   null: false
       t.integer :category_id,         null: false
-      t.integer :item_status_id,      null: false
-      t.integer :delivery_fee_id,     null: false
+      t.integer :itemcondition_id,      null: false
+      t.integer :deliveryfee_id,     null: false
       t.integer :prefecture_id,       null: false
-      t.integer :read_time_id,        null: false
+      t.integer :readtime_id,        null: false
       t.integer :price,               null: false
       t.references :user,             null: false, foreign_key: true
       t.timestamps
