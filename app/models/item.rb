@@ -23,7 +23,7 @@ end
   validates :itemcondition_id
   validates :deliveryfee_id
   validates :readtime_id
+  validates :prefecture_id
   end
 
-  validates :prefecture_id, numericality: { other_than: 0 , message: "can't be blank" }
 end

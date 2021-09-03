@@ -48,8 +48,8 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Deliveryfee can't be blank")
       end
 
-      it "prefectureの入力が0番だと登録できない" do
-        @item.prefecture_id = 0
+      it "prefectureの入力が1番だと登録できない" do
+        @item.prefecture_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Prefecture can't be blank")
       end
