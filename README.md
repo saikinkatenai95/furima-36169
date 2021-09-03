@@ -25,7 +25,7 @@ has_many :buys
 | name                | string      | null: false                    |
 | info                | text        | null: false                    |
 | category_id         | integer     | null: false                    |
-| item_status_id      | integer     | null: false                    |
+| item_condition_id   | integer     | null: false                    |
 | delivery_fee_id     | integer     | null: false                    |
 | prefecture_id       | integer     | null: false                    |
 | read_time_id        | integer     | null: false                    |
@@ -39,7 +39,7 @@ has_one :buy
 
 extend ActiveHash::Associations::ActuveRecordExtensions
 belongs_to :category
-belongs_to :item_status
+belongs_to :item_condition
 belongs_to :delivery_fee
 belongs_to :prefecture
 belongs_to :read_time
