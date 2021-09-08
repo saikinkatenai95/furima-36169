@@ -10,5 +10,9 @@ class BuyResidence
   
     validates :prefecture_id, numericality: {other_than: 0, message: "can't be blank"}
 
-
+    def save
+      buy = Buy.create(user_id: user_id, item_id: item_id)
+      Residence.create(postal_code: postal_code, prefecture_id: prefecture_id, city: city, address: address, build_name: build_name, buy_id: buy.id)
+    end
+    
 end
