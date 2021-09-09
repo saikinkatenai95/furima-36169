@@ -1,6 +1,6 @@
 class BuyResidence
   include ActiveModel::Model
-  attr_accessor :postal_code, :prefecture_id, :city, :address, :build_name, :phone_number, :item_id, :user_id
+  attr_accessor :postal_code, :prefecture_id, :city, :address, :build_name, :phone_number, :item_id, :user_id, :token
 
   with_options presence: true do
     validates :postal_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
@@ -12,7 +12,7 @@ class BuyResidence
 
     def save
       buy = Buy.create(user_id: user_id, item_id: item_id)
-      Residence.create(postal_code: postal_code, prefecture_id: prefecture_id, city: city, address: address, build_name: build_name, buy_id: buy.id)
+      Residence.create(postal_code: postal_code, prefecture_id: prefecture_id, city: city, address: address, build_name: build_name, phone_number: phone_number, buy_id: buy.id)
     end
     
 end

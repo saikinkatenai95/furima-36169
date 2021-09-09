@@ -5,9 +5,11 @@ class BuysController < ApplicationController
   end
 
   def new
+    @buy_residence = BuyResidence.new
   end
 
   def create
+    binding.pry
     @item = Item.find(params[:item_id])
     @buy_residence = BuyResidence.new(buy_params)
     if @buy_residence.valid?
@@ -21,7 +23,7 @@ class BuysController < ApplicationController
   private
 
   def buy_params
-    params.require(:buy_residence).permit(:postal_code, :prefecture_id, :city, :address, :build_name, :phone_number).merge(buy_id: @buy.id, user_id: current_user.id, item_id: @item.id)
+    params.permit(:postal_code, :prefecture_id, :city, :address, :build_name, :phone_number).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
   end
 
 end
