@@ -2,6 +2,9 @@ class BuysController < ApplicationController
 
   def index
     @item = Item.find(params[:item_id])
+    unless @item.buy.nil?
+      redirect_to root_path
+    end
     @buy_residence = BuyResidence.new
   end
 
