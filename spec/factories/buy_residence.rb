@@ -6,7 +6,7 @@ FactoryBot.define do
     postal_code       {"123-2345"}
     prefecture_id     { 2 }
     city              {gimei.city.kanji}
-    address           { 1-1 }
+    address           { "1-1" }
     build_name        {gimei.city.kanji + "303"}
     phone_number      {Faker::Number.number(digits: 11)}
   end

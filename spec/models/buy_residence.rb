@@ -59,7 +59,12 @@ RSpec.describe BuyResidence, type: :model do
         @buy_residence.valid?
         expect(@buy_residence.errors.full_messages).to include("Phone number can't be blank")
       end
-      it "phone_numberが10桁または11桁以外だと保存できないこと" do
+      it "phone_numberが9桁以下だと保存できないこと" do
+        @buy_residence.phone_number = "090123456"
+        @buy_residence.valid?
+        expect(@buy_residence.errors.full_messages).to include("Phone number is invalid. Include hyphen(-)")
+      end
+      it "phone_numberが12桁以上だと保存できないこと" do
         @buy_residence.phone_number = "012012341234"
         @buy_residence.valid?
         expect(@buy_residence.errors.full_messages).to include("Phone number is invalid. Include hyphen(-)")

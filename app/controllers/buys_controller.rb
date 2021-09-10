@@ -1,8 +1,10 @@
 class BuysController < ApplicationController
 
+  before_action :authenticate_user!, only: [:index, :new, :create]
+  before_action :set_item, only: [:index, :create]
+
   def index
-    @item = Item.find(params[:item_id])
-    unless @item.buy.nil?
+    if user_signed_in? && current_user.id == @item.user.id
       redirect_to root_path
     end
     @buy_residence = BuyResidence.new
@@ -13,7 +15,6 @@ class BuysController < ApplicationController
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @buy_residence = BuyResidence.new(buy_params)
     if @buy_residence.valid?
       pay_item
@@ -37,6 +38,10 @@ class BuysController < ApplicationController
         card: buy_params[:token],
         currency: "jpy"
       )
+  end
+
+  def set_item
+    @item = Item.find(params[:item_id])
   end
 
 end
