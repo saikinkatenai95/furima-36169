@@ -28,6 +28,9 @@ class ItemsController < ApplicationController
     unless user_signed_in? && current_user.id == @item.user.id
       redirect_to action: :index
     end
+    unless @item.buy.nil?
+      redirect_to action: :index
+    end
   end
 
   def update
