@@ -7,6 +7,9 @@ class BuysController < ApplicationController
     if user_signed_in? && current_user.id == @item.user.id
       redirect_to root_path
     end
+    unless @item.buy.nil?
+      redirect_to root_path
+    end
     @buy_residence = BuyResidence.new
   end
 
